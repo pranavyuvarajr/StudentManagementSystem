@@ -1,7 +1,10 @@
-package springboot.dev.courseregistration;
+package springboot.dev.courseregistration.Controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import springboot.dev.courseregistration.Service.CourseService;
+import springboot.dev.courseregistration.Entities.CourseTopic;
+import springboot.dev.courseregistration.DTO.UserDTO;
 
 import java.util.List;
 

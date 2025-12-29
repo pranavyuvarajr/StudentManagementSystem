@@ -1,18 +1,22 @@
-package springboot.dev.courseregistration;
+package springboot.dev.courseregistration.Service;
 
 import lombok.AllArgsConstructor;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
+import springboot.dev.courseregistration.Entities.CourseTopic;
+import springboot.dev.courseregistration.MappingMethod;
+import springboot.dev.courseregistration.Repository.CourseRepository;
+import springboot.dev.courseregistration.DTO.UserDTO;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 @AllArgsConstructor
 @Service
 public class CourseService {
     final CourseRepository courseRepository;
+    final MappingMethod mappingMethod = Mappers.getMapper(MappingMethod.class);
 
 
 //    List<CourseTopic> courses = new ArrayList<>(Arrays.asList(
@@ -22,14 +26,14 @@ public class CourseService {
 //            new CourseTopic("python", "Python", "This is a Python course")
 //    ));
 
-    List<UserDTO> allCoursesService(){
-        List<UserDTO> userDTOS = courseRepository
-                .findAll()
-                .stream()
+    public List<UserDTO> allCoursesService(){
+//        List<UserDTO> userDTOS = courseRepository
+//                .findAll()
+//                .stream()
 //                .map(courseTopic -> new UserDTO(courseTopic))
-                .map(UserDTO::new)
-                .toList();
-        return userDTOS;
+//                .map(UserDTO::new)
+//                .toList();
+//        return userDTOS;
 
 //        List<UserDTO> result = new ArrayList<>();
 //
@@ -40,6 +44,8 @@ public class CourseService {
 //        }
 //
 //        return result;
+
+        return mappingMethod.userMapper(courseRepository.findAll());
     }
 
 
@@ -53,7 +59,8 @@ public class CourseService {
 //        return null;
 //        return courseRepository.findById(id).orElse(null);
 
-        return new UserDTO(courseRepository.findById(id).orElse(null));
+//        return new UserDTO(courseRepository.findById(id).orElse(null));
+        return mappingMethod.userMapper(courseRepository.findById(id).orElseThrow(() -> new RuntimeException("Id Not Found")));
     }
 
     public void postCourseService(CourseTopic topic){

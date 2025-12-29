@@ -1,4 +1,4 @@
-package springboot.dev.courseregistration;
+package springboot.dev.courseregistration.Entities;
 
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-class CourseTopic {
+public class CourseTopic {
 
     @Id
     @NotBlank
