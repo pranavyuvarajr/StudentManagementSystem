@@ -1,4 +1,4 @@
-package springboot.dev.courseregistration;
+package springboot.dev.StudentCRUD;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

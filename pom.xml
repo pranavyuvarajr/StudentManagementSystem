@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>springboot.dev</groupId>
-    <artifactId>CourseRegistration</artifactId>
+    <artifactId>StudentCRUD</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>CourseRegistration</name>
     <description>CourseRegistration</description>

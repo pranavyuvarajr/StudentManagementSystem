@@ -1,4 +1,4 @@
-package springboot.dev.courseregistration;
+package springboot.dev.StudentCRUD;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
