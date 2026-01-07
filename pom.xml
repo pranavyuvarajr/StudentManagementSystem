@@ -11,8 +11,8 @@
     <groupId>springboot.dev</groupId>
     <artifactId>StudentCRUD</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>CourseRegistration</name>
-    <description>CourseRegistration</description>
+    <name>StudentCRUD</name>
+    <description>StudentCRUD</description>
     <url/>
     <licenses>
         <license/>

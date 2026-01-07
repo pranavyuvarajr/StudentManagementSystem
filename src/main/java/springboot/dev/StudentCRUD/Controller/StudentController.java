@@ -1,6 +1,8 @@
 package springboot.dev.StudentCRUD.Controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springboot.dev.StudentCRUD.DTO.StudentDTO;
 import springboot.dev.StudentCRUD.Entities.Student;
@@ -16,29 +18,37 @@ public class StudentController {
     final private StudentService studentService;
 
     @GetMapping
-    public List<StudentDTO> allStudentController(){
-        return studentService.allStudentService();
+    public ResponseEntity<List<StudentDTO>> allStudentController(){
+        return new ResponseEntity<>(studentService.allStudentService(), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public StudentDTO getCourseController(@PathVariable String id){
-        return studentService.getStudentService(id);
+    public ResponseEntity<StudentDTO> getStudentController(@PathVariable String id){
+        try {
+            StudentDTO studentDTO = studentService.getStudentService(id);
+            return new ResponseEntity<>(studentDTO, HttpStatus.CREATED);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping
-    public void postStudentController(@RequestBody Student student){
-        studentService.postStudentService(student);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteStudentController(@PathVariable String id){
-        studentService.deleteStudentService(id);
+    public ResponseEntity<Student> postStudentController(@RequestBody Student student){
+        return new ResponseEntity<>(studentService.postStudentService(student), HttpStatus.ACCEPTED);
     }
 
     @PutMapping("/{id}")
-    public void putStudentController(@RequestBody Student student){
-        studentService.putStudentService(student);
+    public ResponseEntity<Student> putStudentController(@RequestBody Student student){
+        return new ResponseEntity<>(studentService.putStudentService(student), HttpStatus.ACCEPTED);
     }
 
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Student> deleteStudentController(@PathVariable String id){
+        try {
+            Student student = studentService.deleteStudentService(id);
+            return new ResponseEntity<>(student, HttpStatus.ACCEPTED);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
 }

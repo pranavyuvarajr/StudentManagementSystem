@@ -27,17 +27,19 @@ public class StudentService {
     }
 
     // Create the student data
-    public void postStudentService(Student student){
-        studentRepository.save(student);
-    }
-
-    // Delete the student data using ID
-    public void deleteStudentService(String id){
-        studentRepository.deleteById(id);
+    public Student postStudentService(Student student){
+        return studentRepository.save(student);
     }
 
     // Edit the student data
-    public void putStudentService(Student student){
-        studentRepository.save(student);
+    public Student putStudentService(Student student){
+        return studentRepository.save(student);
+    }
+
+    // Delete the student data using ID
+    public Student deleteStudentService(String id){
+        Student student = studentRepository.findById(id).orElseThrow(() -> new RuntimeException("Id Not Found"));
+        studentRepository.deleteById(id);
+        return student;
     }
 }
