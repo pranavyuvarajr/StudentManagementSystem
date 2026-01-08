@@ -19,14 +19,14 @@ public class StudentController {
 
     @GetMapping
     public ResponseEntity<List<StudentDTO>> allStudentController(){
-        return new ResponseEntity<>(studentService.allStudentService(), HttpStatus.CREATED);
+        return new ResponseEntity<>(studentService.allStudentService(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<StudentDTO> getStudentController(@PathVariable String id){
         try {
             StudentDTO studentDTO = studentService.getStudentService(id);
-            return new ResponseEntity<>(studentDTO, HttpStatus.CREATED);
+            return new ResponseEntity<>(studentDTO, HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
@@ -34,21 +34,21 @@ public class StudentController {
 
     @PostMapping
     public ResponseEntity<Student> postStudentController(@RequestBody Student student){
-        return new ResponseEntity<>(studentService.postStudentService(student), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(studentService.postStudentService(student), HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     public ResponseEntity<Student> putStudentController(@RequestBody Student student){
-        return new ResponseEntity<>(studentService.putStudentService(student), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(studentService.putStudentService(student), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Student> deleteStudentController(@PathVariable String id){
         try {
             Student student = studentService.deleteStudentService(id);
-            return new ResponseEntity<>(student, HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(student, HttpStatus.OK);
         } catch (RuntimeException e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
     }
 }
